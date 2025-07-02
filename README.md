@@ -1,12 +1,47 @@
-# React + Vite
+# 🎉 Eventify — College Event Management Platform  
+> Built in collaboration with [@oyetanishq](https://github.com/oyetanishq) & [@shuklashikhar007](https://github.com/shuklashikhar007)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 📌 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Eventify** is a centralized web platform for managing and discovering all college events — built specifically for IIT BHU students. Instead of missing out on events buried in WhatsApp forwards, students can now find, create, and track events on a clean and intuitive platform.
 
-## Expanding the ESLint configuration
+> 🔐 Students must log in to create or view events personalized to their interests.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🌟 Key Features
+
+- 🔔 Never miss an event again — see all upcoming events in one place
+- 🧑‍💼 Create events with details like organizer, target students, social media links, and paid/free tag
+- 📲 Built mobile-first with beautiful UI and dark mode support
+- 💾 Scalable frontend ready for future backend integration
+
+---
+
+## 🛠️ Tech Stack
+
+| Tech             | Description                              |
+|------------------|------------------------------------------|
+| React.js         | Frontend framework                       |
+| React Router DOM | Routing and navigation                   |
+| CSS   | Styling with responsiveness                         |
+| Framer Motion    | Animations and transitions               |
+| GitHub Pages     | (or other) deployment ready              |
+
+---
+
+## 📸 Pages & Components
+
+- **Home Page** — Hero intro with animations & CTA buttons
+- **Login / Signup** — Basic auth screens for account access
+- **Events** — See upcoming events in card preview layout
+- **Create Event** — Logged-in users can submit new events
+- **Footer & Header** — Persistent navigation with social links
+- **Social Pages** — GitHub, LinkedIn, Instagram, Admin Bios
+
+---
+
+
+
