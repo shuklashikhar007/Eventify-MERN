@@ -1,67 +1,67 @@
 .create-event-container {
-  min-height: 100vh;
-  padding: 2rem;
-  background-color: var(--bg, #1e293b);
-  color: var(--text, #f1f5f9);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: var(--bg, #1e293b);
+    color: var(--text, #f1f5f9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .create-event-container h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: #38bdf8;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #38bdf8;
 }
 
 .create-event-form {
-  width: 100%;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .create-event-form input,
 .create-event-form textarea {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #f8fafc;
-  color: #0f172a;
-  font-size: 1rem;
-  font-family: inherit;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    color: #0f172a;
+    font-size: 1rem;
+    font-family: inherit;
 }
 
 .create-event-form textarea {
-  min-height: 120px;
-  resize: vertical;
+    min-height: 120px;
+    resize: vertical;
 }
 
 .checkbox-container {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1rem;
 }
 
 .create-event-form button {
-  padding: 0.8rem 1.2rem;
-  background: linear-gradient(to right, #3b82f6, #06b6d4);
-  color: white;
-  border: none;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease;
+    padding: 0.8rem 1.2rem;
+    background: linear-gradient(to right, #3b82f6, #06b6d4);
+    color: white;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 .create-event-form button:hover {
-  background: linear-gradient(to right, #2563eb, #0891b2);
+    background: linear-gradient(to right, #2563eb, #0891b2);
 }

@@ -1,178 +1,174 @@
 /* Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 header.header {
-background: #EEAECA;
-background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-  
-  border-bottom: 1px solid #e2e8f0;
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #eeaeca;
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Container */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* Logo */
 .logo {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #2d3748;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #2d3748;
 }
 
 /* Navigation */
 .nav {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  transition: all 0.3s ease;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    transition: all 0.3s ease;
 }
 
 .nav a {
-  text-decoration: none;
-  color: #4a5568;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
+    text-decoration: none;
+    color: #4a5568;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
 .nav a:hover {
-  color: #2b6cb0;
+    color: #2b6cb0;
 }
 
 /* Call to Action Button */
 .nav .cta {
-  background-color: #3182ce;
-  color: #fff !important;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: background 0.3s ease;
+    background-color: #3182ce;
+    color: #fff !important;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background 0.3s ease;
 }
 
 .nav .cta:hover {
-  background-color: #2b6cb0;
+    background-color: #2b6cb0;
 }
 
 /* Hamburger Menu */
 .menu-toggle {
-  display: none;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #2d3748;
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2d3748;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .nav {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    flex-direction: column;
-    background: #ffffff;
-    width: 100%;
-    padding: 1rem 2rem;
-    transform: translateY(-20px);
-    opacity: 0;
-    pointer-events: none;
-    border-top: 1px solid #e2e8f0;
-  }
+    .nav {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        flex-direction: column;
+        background: #ffffff;
+        width: 100%;
+        padding: 1rem 2rem;
+        transform: translateY(-20px);
+        opacity: 0;
+        pointer-events: none;
+        border-top: 1px solid #e2e8f0;
+    }
 
-  .nav.active {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
+    .nav.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
 
-  .menu-toggle {
-    display: block;
-  }
+    .menu-toggle {
+        display: block;
+    }
 }
 :root {
-  --bg: #ffffff;
-  --text: #2d3748;
-  --link: #4a5568;
-  --hover: #2b6cb0;
-  --button: #3182ce;
-  --button-hover: #2b6cb0;
+    --bg: #ffffff;
+    --text: #2d3748;
+    --link: #4a5568;
+    --hover: #2b6cb0;
+    --button: #3182ce;
+    --button-hover: #2b6cb0;
 }
 
 .dark {
-  --bg: #1a202c;
-  --text: #f7fafc;
-  --link: #cbd5e0;
-  --hover: #63b3ed;
-  --button: #63b3ed;
-  --button-hover: #4299e1;
+    --bg: #1a202c;
+    --text: #f7fafc;
+    --link: #cbd5e0;
+    --hover: #63b3ed;
+    --button: #63b3ed;
+    --button-hover: #4299e1;
 }
 
 /* Apply vars */
 body {
-  background-color: var(--bg);
-  color: var(--text);
-  transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header.header {
-  background-color: var(--bg);
-  color: var(--text);
-  border-bottom: 1px solid #e2e8f0;
+    background-color: var(--bg);
+    color: var(--text);
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .nav a {
-  color: var(--link);
+    color: var(--link);
 }
 
 .nav a:hover {
-  color: var(--hover);
+    color: var(--hover);
 }
 
 .nav .cta {
-  background-color: var(--button);
-  color: white !important;
+    background-color: var(--button);
+    color: white !important;
 }
 
 .nav .cta:hover {
-  background-color: var(--button-hover);
+    background-color: var(--button-hover);
 }
 
 .menu-toggle,
 .theme-toggle {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  margin-left: 1rem;
-  cursor: pointer;
-  color: var(--text);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    color: var(--text);
 }
 
 .header-controls {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 @media (max-width: 768px) {
-  .header-controls {
-    flex-direction: row-reverse;
-  }
+    .header-controls {
+        flex-direction: row-reverse;
+    }
 }
-
-
-
-
