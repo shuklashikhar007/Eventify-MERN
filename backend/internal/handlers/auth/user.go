@@ -103,7 +103,7 @@ func (h *AuthUserHandler) Logout(c *gin.Context) {
 	helpers.ExpireCookie(c, "oauth_state") // expire the oauth state cookie
 	helpers.ExpireCookie(c, "oauth_session") // expire the oauth session cookie
 
-	c.String(http.StatusOK, "logout")
+	c.Redirect(http.StatusTemporaryRedirect, config.Env.RedirectURL)
 }
 
 // path: GET /auth/user
@@ -211,9 +211,8 @@ func (h *AuthUserHandler) OAuthCallback(c *gin.Context) {
 		return
 	}
 
-	helpers.SetCookie(c, "token", token, 7*24*60*60) // set token cookie for 1 week
 	helpers.ExpireCookie(c, stateCookie) // expire the state cookie
 	helpers.ExpireCookie(c, sessionCookie) // expire the session cookie
 
-	c.Redirect(http.StatusTemporaryRedirect, "/auth/protected")
+	c.Redirect(http.StatusTemporaryRedirect, fmt.Sprintf("%s/save-token/%s", config.Env.RedirectURL, token))
 }

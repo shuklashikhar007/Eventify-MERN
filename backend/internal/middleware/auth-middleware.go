@@ -18,7 +18,7 @@ func UserAuthMiddleware(c *gin.Context) {
 
     cookie, err := c.Request.Cookie("token")
 	if err != nil {
-		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "Missing Authorization Header"})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Missing Authorization Header"})
 		return
 	}
 
@@ -29,7 +29,7 @@ func UserAuthMiddleware(c *gin.Context) {
 			return
 		}
 
-		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
 
