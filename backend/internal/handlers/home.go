@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shuklashikhar007/Eventify/backend/internal/handlers/auth"
+	"github.com/shuklashikhar007/Eventify/backend/internal/handlers/event"
 	"github.com/shuklashikhar007/Eventify/backend/internal/repository"
 )
 
@@ -15,6 +16,7 @@ import (
 //     - GET /health: Returns a simple "OK" response for health checks.
 //
 //     - /auth/* routes for authentication.
+//     - /event/* routes for events.
 func SetupHomeRoutes(r *gin.Engine) {
     homeGroup := r.Group("/")
 
@@ -22,6 +24,7 @@ func SetupHomeRoutes(r *gin.Engine) {
 	homeGroup.GET("/health", health)
 
 	auth.NewAuthUserHandler(repository.UserRepo).RegisterRoutes(homeGroup)
+	event.NewEventHandler(repository.EventRepo).RegisterRoutes(homeGroup)
 }
 
 // path: GET /
