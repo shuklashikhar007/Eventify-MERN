@@ -23,8 +23,8 @@ const CreateEvent = () => {
             title,
             description,
             location,
-            event_start_time: eventStartTime,
-            event_end_time: eventEndTime,
+            event_start_time: new Date(eventStartTime).toISOString(),
+            event_end_time: new Date(eventEndTime).toISOString(),
             is_canceled: false,
             is_rescheduled: false,
         };

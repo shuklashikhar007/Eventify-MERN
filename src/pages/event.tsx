@@ -1,6 +1,6 @@
 import { useEventStore, type Event, type EventUpdater } from "@/store/event";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 
 function EventUpdater({ updater }: { updater: EventUpdater }) {
     return (
@@ -44,6 +44,8 @@ export default function EventPage() {
             {event.event_updaters.map((eu) => (
                 <EventUpdater key={eu.event_updater_id} updater={eu} />
             ))}
+
+            <Link to={`/edit-event/${event.event_id}`}>edit this event</Link>
         </div>
     );
 }

@@ -26,7 +26,7 @@ const Home = () => {
                 <Link to="/events" className="cta-button">
                     📅 See Upcoming Events
                 </Link>
-                <Link to="/create" className="cta-button secondary">
+                <Link to="/createevent" className="cta-button secondary">
                     ➕ Create New Event
                 </Link>
             </motion.div>
