@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
-import "./CreateEvent.css";
+import "./createEvent.css";
 import { useUserStore } from "@/store/user";
 import { useEventStore, type Event } from "@/store/event";
 import { useNavigate, useParams } from "react-router";
@@ -32,7 +32,7 @@ const EditEvent = () => {
                 setTitle(fetchedEvent.title);
                 setDescription(fetchedEvent.description);
                 setLocation(fetchedEvent.location);
-                setEventStartTime((fetchedEvent.event_start_time));
+                setEventStartTime(fetchedEvent.event_start_time);
                 setEventEndTime(fetchedEvent.event_end_time);
                 setIsCanceled(fetchedEvent.is_canceled);
                 setIsRescheduled(fetchedEvent.is_rescheduled);

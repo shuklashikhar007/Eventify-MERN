@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import "./CreateEvent.css";
+import "./createEvent.css";
 import { useUserStore } from "@/store/user";
 import { useEventStore, type CreateEventPayload } from "@/store/event";
 import { useNavigate } from "react-router";
@@ -30,7 +30,7 @@ const CreateEvent = () => {
         };
 
         const event_id = await createEvent(event);
-    
+
         if (event_id) navigate(`/event/${event_id}`);
     };
 
