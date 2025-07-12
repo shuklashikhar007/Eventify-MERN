@@ -11,6 +11,8 @@ const Home = () => {
             <motion.h1 initial={{ opacity: 0, y: -30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="homepage-heading">
                 Never Miss a College Event Again.
             </motion.h1>
+            <br></br>
+            <br></br>
 
             <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5 }} className="homepage-subtext">
                 Tired of missing out on important college events just because they were buried in WhatsApp messages?

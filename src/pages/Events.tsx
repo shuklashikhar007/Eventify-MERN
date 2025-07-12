@@ -3,24 +3,7 @@ import "./events.css";
 import { useEventStore, type Event } from "@/store/event";
 import { Link } from "react-router";
 
-const mockEvents = [
-    {
-        id: 1,
-        title: "Coding Marathon",
-        society: "Programming Club",
-        shortDescription: "24-hour coding hackathon with prizes and fun.",
-        isPaid: false,
-        target: "All BTech Students",
-    },
-    {
-        id: 2,
-        title: "Photography Workshop",
-        society: "Photography Society",
-        shortDescription: "Learn the basics of DSLR and mobile photography.",
-        isPaid: true,
-        target: "Open to All",
-    },
-];
+
 
 const Events = () => {
     const [page, setPage] = useState(1);

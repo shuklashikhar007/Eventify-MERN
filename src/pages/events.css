@@ -1,50 +1,85 @@
+/* Overall page wrapper */
 .events-page {
-    min-height: 100vh;
-    background-color: var(--bg, #0f172a);
-    color: var(--text, #f1f5f9);
-    padding: 2rem;
-}
-
-.events-page h1 {
+    padding: 3rem 1rem;
     text-align: center;
-    font-size: 2.5rem;
-    color: #60a5fa;
-    margin-bottom: 2rem;
+    background-color: #fdfdfd;
 }
 
+/* Heading */
+.events-page h1 {
+    font-size: 2.5rem;
+    color: #4a90e2;
+    font-weight: bold;
+    margin-bottom: 3rem;
+}
+
+/* Container for event cards */
 .events-list {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
     align-items: center;
+    gap: 2rem;
 }
 
+/* Individual event card */
 .event-preview-card {
-    background: linear-gradient(to right, #6366f1, #3b82f6);
+    background: linear-gradient(135deg, #6e72fc, #4796ff);
     color: white;
-    padding: 1.5rem;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 600px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    width: 80%;
+    max-width: 900px;
+    transition: transform 0.2s ease-in-out;
+    text-align: left;
 }
 
+/* Card hover effect */
 .event-preview-card:hover {
-    transform: translateY(-4px);
+    transform: scale(1.02);
 }
 
-.event-preview-card button {
+/* Title inside card */
+.event-preview-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+/* Description text */
+.event-preview-card p {
+    margin: 0.3rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Bold labels for canceled/rescheduled */
+.event-preview-card strong {
+    margin-right: 1rem;
+}
+
+/* "View Details" link */
+.event-preview-card a {
     margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background-color: white;
-    color: #1e293b;
-    font-weight: bold;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
+    display: inline-block;
+    color: #e0e0ff;
+    text-decoration: underline;
+    font-weight: 500;
 }
 
-.event-preview-card button:hover {
-    background-color: #e2e8f0;
+/* Pagination section */
+.events-page > div:last-child {
+    margin-top: 2rem;
 }
+
+.events-page p {
+    cursor: pointer;
+    color: #4a90e2;
+    font-size: 1.1rem;
+    margin: 0.5rem;
+}
+
+.events-page p:hover {
+    text-decoration: underline;
+}
+

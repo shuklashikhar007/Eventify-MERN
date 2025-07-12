@@ -1,0 +1,88 @@
+.contactus-container {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 40px 24px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fdfdfd;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    color: #2c3e50;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.contactus-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.contactus-intro {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #444;
+}
+
+.contact-card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.contact-card {
+    background-color: #f7f9fb;
+    padding: 24px 30px;
+    border-radius: 10px;
+    border-left: 6px solid #2c3e50;
+    max-width: 500px;
+    width: 100%;
+    text-align: left;
+}
+
+.contact-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+}
+
+.contact-card p {
+    font-size: 1.1rem;
+    margin: 6px 0;
+    color: #333;
+}
+
+.contact-card a {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-card a:hover {
+    text-decoration: underline;
+}
+
+.linkedin-button {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 16px;
+    font-size: 1rem;
+    border: 2px solid #0a66c2;
+    background-color: #0a66c2;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+}
+
+.linkedin-button:hover {
+    background-color: white;
+    color: #0a66c2;
+}
+
+.closing-note {
+    margin-top: 20px;
+    font-size: 1.05rem;
+    color: #666;
+}
+

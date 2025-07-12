@@ -7,7 +7,7 @@ const Instagram = () => {
             <div className="profile-card">
                 <img src="https://avatars.githubusercontent.com/u/78887814?v=4" alt="Tanishq Oye" className="admin-img" />
                 <h2>Tanishq Singh</h2>
-                <a href="https://instagram.com/yahausernamedaldena" target="_blank" rel="noopener noreferrer">
+                <a href="https://instagram.com/oyetanishqq" target="_blank" rel="noopener noreferrer">
                     📸 Follow on Instagram
                 </a>
             </div>

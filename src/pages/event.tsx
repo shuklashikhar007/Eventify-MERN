@@ -34,7 +34,6 @@ export default function EventPage() {
 
     return (
         <div>
-            <p>EVENT ID: {event.event_id}</p>
             <p>TITLE: {event.title}</p>
             <p>DESC: {event.description}</p>
             <p>EVENT CREATED BY: {event.created_by.email}</p>

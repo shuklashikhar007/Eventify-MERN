@@ -3,7 +3,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import About from "./components/About";
-import Contact from "./components/Contact";
+import Contact from "./components/ContactUs";
 import CreateEvent from "./pages/CreateEvent";
 import Instagram from "./components/Instagram";
 import Login from "./pages/Login";
