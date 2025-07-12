@@ -13,6 +13,8 @@ import GitHub from "./components/GitHub";
 import Signup from "./pages/Signup";
 import Admins from "./components/Admins";
 
+import { Loader } from "lucide-react";
+
 import { useUserStore } from "@/store/user";
 import { useEffect } from "react";
 import SaveToken from "./pages/save-token";
@@ -26,7 +28,13 @@ function App() {
         (async () => await refresh())();
     }, []);
 
-    if (isLoading) return <h1>loading...</h1>;
+    if (isLoading)
+        return (
+            <div className="min-h-dvh w-full flex flex-col gap-2 justify-center items-center">
+                <Loader className="size-6 animate-spin" />
+                <span className="text-xs sm:text-sm animate-pulse">please wait</span>
+            </div>
+        );
 
     return (
         <div className="app-layout">
