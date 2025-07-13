@@ -1,25 +1,27 @@
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Events from "./pages/Events";
-import About from "./components/About";
-import Contact from "./components/ContactUs";
-import CreateEvent from "./pages/CreateEvent";
-import Instagram from "./components/Instagram";
-import Login from "./pages/Login";
-import { Routes, Route } from "react-router-dom";
-import LinkedIn from "./components/LinkedIn";
-import GitHub from "./components/GitHub";
-import Signup from "./pages/Signup";
-import Admins from "./components/Admins";
-
+import { useEffect } from "react";
+import { Routes, Route } from "react-router";
+import { useUserStore } from "@/store/user";
 import { Loader } from "lucide-react";
 
-import { useUserStore } from "@/store/user";
-import { useEffect } from "react";
-import SaveToken from "./pages/save-token";
-import EventPage from "./pages/event";
-import EditEvent from "./pages/edit-event";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import About from "@/components/About";
+import Contact from "@/components/ContactUs";
+import Instagram from "@/components/Instagram";
+import LinkedIn from "@/components/LinkedIn";
+import GitHub from "@/components/GitHub";
+import Admins from "@/components/Admins";
+
+import Home from "@/pages/Home";
+import Events from "@/pages/Events";
+import CreateEvent from "@/pages/CreateEvent";
+import Login from "@/pages/Login";
+import Signup from "@/pages/Signup";
+import SaveToken from "@/pages/save-token";
+import EventPage from "@/pages/event";
+import EditEvent from "@/pages/edit-event";
+import NotFound from "@/pages/not-found";
+import Message from "@/pages/message";
 
 function App() {
     const { refresh, isLoading } = useUserStore();
@@ -55,6 +57,8 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/Signup" element={<Signup />} />
                     <Route path="/Admins" element={<Admins />} />
+                    <Route path="/message/:text" element={<Message />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>
             <Footer />

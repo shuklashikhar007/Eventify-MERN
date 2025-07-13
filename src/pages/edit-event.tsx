@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { useUserStore } from "@/store/user";
 import { useEventStore, type Event } from "@/store/event";
 import { useNavigate, useParams } from "react-router";
-import { CalendarClock, CalendarPlus, Locate, Loader, Pencil, ShieldOff, ShieldCheck, Text, TextQuote, X } from "lucide-react";
+import { CalendarClock, CalendarPlus, Locate, Loader, Pencil, ShieldOff, ShieldCheck, Text, TextQuote } from "lucide-react";
 
 const EditEvent = () => {
     const navigate = useNavigate();
@@ -75,7 +75,7 @@ const EditEvent = () => {
     };
 
     return (
-        <div className="max-w-2xl flex-1 w-full mx-auto p-8! bg-white shadow-xl rounded-xl">
+        <div className="max-w-2xl flex-1 w-full mx-6! sm:mx-auto p-8! bg-white shadow-xl rounded-xl">
             <h1 className="text-3xl font-semibold mb-6! flex items-center gap-2">
                 <Pencil className="w-6 h-6 text-indigo-500" />
                 Edit Event
@@ -117,12 +117,15 @@ const EditEvent = () => {
 
                 <div className="flex items-center gap-2">
                     <CalendarClock className="size-5 text-gray-500" />
-                    <input type="datetime-local" required value={eventStartTime.slice(0, 16)} onChange={(e) => setEventStartTime(e.target.value)} className="w-full px-4! py-2! border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                    <span className="w-20 text-sm font-semibold">Start Time</span>
+                    <input type="datetime-local" required value={eventStartTime.slice(0, 16)} onChange={(e) => setEventStartTime(e.target.value)} className="flex-1 px-4! py-2! border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                 </div>
 
                 <div className="flex items-center gap-2">
                     <CalendarPlus className="size-5 text-gray-500" />
-                    <input type="datetime-local" required value={eventEndTime.slice(0, 16)} onChange={(e) => setEventEndTime(e.target.value)} className="w-full px-4! py-2! border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+
+                    <span className="w-20 text-sm font-semibold">End Time</span>
+                    <input type="datetime-local" required value={eventEndTime.slice(0, 16)} onChange={(e) => setEventEndTime(e.target.value)} className="flex-1 px-4! py-2! border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                 </div>
 
                 <div className="flex items-center gap-2">

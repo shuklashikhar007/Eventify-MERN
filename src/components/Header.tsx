@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router";
 import "./Header.css";
 import { useUserStore } from "@/store/user";
 
 export default function Header() {
+    const location = useLocation();
     const { user, login, logout } = useUserStore();
 
     const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +22,10 @@ export default function Header() {
             localStorage.setItem("theme", "light");
         }
     }, [isDark]);
+
+    useEffect(() => {
+        setIsOpen(false);
+    }, [location]);
 
     const toggleMenu = () => setIsOpen(!isOpen);
     const toggleTheme = () => setIsDark(!isDark);
