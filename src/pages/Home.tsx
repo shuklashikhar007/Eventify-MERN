@@ -22,10 +22,10 @@ const Home = () => {
             </motion.p>
 
             <motion.div className="cta-buttons" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
-                <Link to="/events" className="cta-button">
+                <Link to="/events" className="cta-button w-full max-w-xs">
                     📅 See Upcoming Events
                 </Link>
-                <Link to="/createevent" className="cta-button secondary">
+                <Link to="/createevent" className="cta-button secondary w-full max-w-xs">
                     ➕ Create New Event
                 </Link>
             </motion.div>

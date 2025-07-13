@@ -76,7 +76,7 @@ const Events = () => {
         );
 
     return (
-        <div className="flex flex-col justify-center items-center gap-5 mt-5! w-full">
+        <div className="flex flex-col self-start justify-center items-center gap-5 mt-5! mx-8! w-full">
             <h1 className="font-semibold underline underline-offset-2">Upcoming Events</h1>
             <div className="max-w-2xl mx-auto mt-10 px-4">
                 {events.map((event) => (
