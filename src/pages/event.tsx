@@ -56,7 +56,7 @@ export default function EventPage() {
     };
 
     return (
-        <div className="max-w-3xl flex-1 w-full mx-auto p-6! bg-white rounded-2xl shadow-md border border-gray-200 space-y-4!">
+        <div className="max-w-3xl flex-1 w-full mx-6! sm:mx-auto p-6! bg-white rounded-2xl shadow-md border border-gray-200 space-y-4!">
             {/* Header */}
             <div className="flex justify-between items-start">
                 <div className="space-y-1!">
@@ -102,6 +102,7 @@ export default function EventPage() {
             {/* Timeline */}
             <div className="mt-6!">
                 <h3 className="text-lg font-semibold text-gray-800 mb-2!">Update History</h3>
+                {event.event_updaters.length === 0 && <span className="text-sm">No yet modified</span>}
                 <ol className="relative border-l border-gray-300 pl-4! space-y-4!">
                     {[...event.event_updaters]
                         .sort((a, b) => new Date(b.UpdatedAt).getTime() - new Date(a.UpdatedAt).getTime())
