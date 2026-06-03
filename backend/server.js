@@ -11,9 +11,12 @@ const app = express();
 // ── Middleware ───────────────────────────────────────────────────────────────
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "*", // set FRONTEND_URL=http://localhost:5173 in .env
+    origin: [
+      "https://eventify-frontend-d634-o87rr08p3.vercel.app"
+    ],
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization"]
   })
 );
 app.use(express.json());
