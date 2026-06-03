@@ -38,3 +38,6 @@ connectDB().then(() => {
     console.log(` Eventify API running on http://localhost:${PORT}`);
   });
 });
+
+module.exports = app;
+//  vercel works as a serverless service isliye server.js file ko end mai export karna bahut jaruri hai yaha par
