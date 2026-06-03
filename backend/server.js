@@ -9,16 +9,12 @@ const eventRoutes = require("./routes/event");
 const app = express();
 
 // ── Middleware ───────────────────────────────────────────────────────────────
-app.use(
-  cors({
-    origin: [
-      "https://eventify-frontend-d634-o87rr08p3.vercel.app"
-    ],
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"]
-  })
-);
+app.use(cors({
+  origin: [
+    "https://eventify-frontend-b634.vercel.app",
+    "http://localhost:5173"
+  ]
+}));
 app.use(express.json());
 
 // ── Routes ───────────────────────────────────────────────────────────────────
