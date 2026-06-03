@@ -12,7 +12,7 @@ const app = express();
 // 1. Expanded CORS Configuration
 app.use(cors({
   origin: [
-    "https://eventify-frontend-b634.vercel.app",
+    "https://eventify-frontend-mauve.vercel.app",
     "http://localhost:5173"
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
