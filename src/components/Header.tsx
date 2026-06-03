@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import "./Header.css";
 import { useUserStore } from "@/store/user";
-
 export default function Header() {
     const location = useLocation();
-    const { user, login, logout } = useUserStore();
+    const navigate = useNavigate();
+    const { user, logout } = useUserStore();
 
     const [isOpen, setIsOpen] = useState(false);
     const [isDark, setIsDark] = useState(() => {
         return localStorage.getItem("theme") === "dark";
     });
-
     useEffect(() => {
         const root = document.documentElement;
         if (isDark) {
@@ -22,7 +21,6 @@ export default function Header() {
             localStorage.setItem("theme", "light");
         }
     }, [isDark]);
-
     useEffect(() => {
         setIsOpen(false);
     }, [location]);
@@ -43,11 +41,19 @@ export default function Header() {
                     <Link to="/about">About</Link>
                     <Link to="/contact">Contact</Link>
                     {user ? (
-                        <button type="button" className="py-0.5! px-3! cursor-pointer rounded-sm bg-fuchsia-100 active:bg-fuchsia-100 border-fuchsia-200 hover:bg-fuchsia-100/70 duration-300 border" onClick={logout}>
+                        <button
+                            type="button"
+                            className="py-0.5! px-3! cursor-pointer rounded-sm bg-fuchsia-100 active:bg-fuchsia-100 border-fuchsia-200 hover:bg-fuchsia-100/70 duration-300 border"
+                            onClick={logout}
+                        >
                             logout
                         </button>
                     ) : (
-                        <button type="button" className="py-0.5! px-3! cursor-pointer rounded-sm bg-fuchsia-100 active:bg-fuchsia-100 border-fuchsia-200 hover:bg-fuchsia-100/70 duration-300 border" onClick={login}>
+                        <button
+                            type="button"
+                            className="py-0.5! px-3! cursor-pointer rounded-sm bg-fuchsia-100 active:bg-fuchsia-100 border-fuchsia-200 hover:bg-fuchsia-100/70 duration-300 border"
+                            onClick={() => navigate("/login")}
+                        >
                             login
                         </button>
                     )}

@@ -1,0 +1,44 @@
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const connectDB = require("./config/db");
+
+const authRoutes = require("./routes/auth");
+const eventRoutes = require("./routes/event");
+
+const app = express();
+
+// ── Middleware ───────────────────────────────────────────────────────────────
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "*", // set FRONTEND_URL=http://localhost:5173 in .env
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+app.use(express.json());
+
+// ── Routes ───────────────────────────────────────────────────────────────────
+app.use("/auth", authRoutes);
+app.use("/event", eventRoutes);
+
+// Health check
+app.get("/", (_req, res) => res.json({ status: "ok", service: "Eventify API" }));
+
+// 404 handler
+app.use((_req, res) => res.status(404).json({ message: "Route not found." }));
+
+// Global error handler
+app.use((err, _req, res, _next) => {
+  console.error("Unhandled error:", err);
+  res.status(500).json({ message: "Internal server error." });
+});
+
+// ── Start ────────────────────────────────────────────────────────────────────
+const PORT = process.env.PORT || 3000;
+
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 Eventify API running on http://localhost:${PORT}`);
+  });
+});

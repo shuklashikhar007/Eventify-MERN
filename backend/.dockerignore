@@ -1,6 +1,0 @@
-main
-.env*
-tmp
-tests
-dockerfile
-.air.toml
