@@ -1,114 +1,120 @@
-const { Event, formatEvent } = require("../models/Event");
 const mongoose = require("mongoose");
+const EventModel = require("../models/Event");
+
+const Event = EventModel.Event;
+const formatEvent = EventModel.formatEvent;
 
 const PAGE_SIZE = 10;
 
-// ── Populate helper ─────────────────────────────────────────────────────────
-// Populates created_by and each updater's updated_by in one query
-const populateEvent = (query) =>
-  query
+function populateEvent(query) {
+  return query
     .populate("created_by_id", "name email image_url")
     .populate("event_updaters.updated_by_id", "name email image_url");
+}
 
-// Renames populated fields so formatEvent can find them
-const hydrateEvent = (doc) => {
-  // Mongoose populate puts the result on the ref field name.
-  // We alias them to what formatEvent expects.
+function hydrateEvent(doc) {
   doc.created_by = doc.created_by_id;
-  doc.event_updaters = (doc.event_updaters || []).map((u) => {
-    u.updated_by = u.updated_by_id;
-    return u;
-  });
+  var updaters = doc.event_updaters || [];
+  for (var i = 0; i < updaters.length; i++) {
+    updaters[i].updated_by = updaters[i].updated_by_id;
+  }
   return doc;
-};
+}
 
-// ── GET /event/?page=N ───────────────────────────────────────────────────────
-const getEvents = async (req, res) => {
+async function getEvents(req, res) {
   try {
-    const page = Math.max(1, parseInt(req.query.page) || 1);
-    const skip = (page - 1) * PAGE_SIZE;
+    var page = parseInt(req.query.page) || 1;
+    if (page < 1) page = 1;
+    var skip = (page - 1) * PAGE_SIZE;
 
-    const docs = await populateEvent(
+    var docs = await populateEvent(
       Event.find().sort({ createdAt: -1 }).skip(skip).limit(PAGE_SIZE)
     );
 
-    const events = docs.map((d) => formatEvent(hydrateEvent(d)));
-    return res.status(200).json({ events });
+    var events = docs.map(function (d) {
+      return formatEvent(hydrateEvent(d));
+    });
+
+    return res.status(200).json({ events: events });
   } catch (err) {
     console.error("getEvents error:", err);
     return res.status(500).json({ message: "Failed to fetch events." });
   }
-};
+}
 
-// ── POST /event/ ─────────────────────────────────────────────────────────────
-const createEvent = async (req, res) => {
+async function createEvent(req, res) {
   try {
-    const { title, description, location, event_start_time, event_end_time, is_canceled, is_rescheduled } = req.body;
+    var body = req.body;
 
-    const doc = await Event.create({
-      title,
-      description,
-      location,
-      event_start_time,
-      event_end_time,
-      is_canceled: is_canceled ?? false,
-      is_rescheduled: is_rescheduled ?? false,
+    var doc = await Event.create({
+      title: body.title,
+      description: body.description,
+      location: body.location,
+      event_start_time: body.event_start_time,
+      event_end_time: body.event_end_time,
+      is_canceled: body.is_canceled || false,
+      is_rescheduled: body.is_rescheduled || false,
       created_by_id: req.user._id,
       event_updaters: [],
     });
 
-    const populated = await populateEvent(Event.findById(doc._id));
-    const event = formatEvent(hydrateEvent(populated));
+    var populated = await populateEvent(Event.findById(doc._id));
+    var event = formatEvent(hydrateEvent(populated));
 
-    return res.status(201).json({ event });
+    return res.status(201).json({ event: event });
   } catch (err) {
     if (err.name === "ValidationError") {
-      const messages = Object.values(err.errors).map((e) => e.message);
+      var messages = Object.values(err.errors).map(function (e) {
+        return e.message;
+      });
       return res.status(400).json({ message: messages.join(", ") });
     }
     console.error("createEvent error:", err);
     return res.status(500).json({ message: "Failed to create event." });
   }
-};
+}
 
-// ── GET /event/:event_id ──────────────────────────────────────────────────────
-const getEventById = async (req, res) => {
+async function getEventById(req, res) {
   try {
-    const { event_id } = req.params;
+    var event_id = req.params.event_id;
 
     if (!mongoose.Types.ObjectId.isValid(event_id)) {
       return res.status(404).json({ message: "Event not found." });
     }
 
-    const doc = await populateEvent(Event.findById(event_id));
-    if (!doc) return res.status(404).json({ message: "Event not found." });
+    var doc = await populateEvent(Event.findById(event_id));
+    if (!doc) {
+      return res.status(404).json({ message: "Event not found." });
+    }
 
     return res.status(200).json({ event: formatEvent(hydrateEvent(doc)) });
   } catch (err) {
     console.error("getEventById error:", err);
     return res.status(500).json({ message: "Failed to fetch event." });
   }
-};
+}
 
-// ── PUT /event/:event_id ──────────────────────────────────────────────────────
-const updateEvent = async (req, res) => {
+async function updateEvent(req, res) {
   try {
-    const { event_id } = req.params;
+    var event_id = req.params.event_id;
 
     if (!mongoose.Types.ObjectId.isValid(event_id)) {
       return res.status(404).json({ message: "Event not found." });
     }
 
-    const doc = await Event.findById(event_id);
-    if (!doc) return res.status(404).json({ message: "Event not found." });
+    var doc = await Event.findById(event_id);
+    if (!doc) {
+      return res.status(404).json({ message: "Event not found." });
+    }
 
-    // Apply allowed fields
-    const allowed = ["title", "description", "location", "event_start_time", "event_end_time", "is_canceled", "is_rescheduled"];
-    allowed.forEach((field) => {
-      if (req.body[field] !== undefined) doc[field] = req.body[field];
-    });
+    var allowed = ["title", "description", "location", "event_start_time", "event_end_time", "is_canceled", "is_rescheduled"];
+    for (var i = 0; i < allowed.length; i++) {
+      var field = allowed[i];
+      if (req.body[field] !== undefined) {
+        doc[field] = req.body[field];
+      }
+    }
 
-    // Record who updated
     doc.event_updaters.push({
       ref_event_id: doc._id,
       updated_by_id: req.user._id,
@@ -116,37 +122,46 @@ const updateEvent = async (req, res) => {
 
     await doc.save();
 
-    const populated = await populateEvent(Event.findById(doc._id));
-    const event = formatEvent(hydrateEvent(populated));
+    var populated = await populateEvent(Event.findById(doc._id));
+    var event = formatEvent(hydrateEvent(populated));
 
-    return res.status(200).json({ event });
+    return res.status(200).json({ event: event });
   } catch (err) {
     if (err.name === "ValidationError") {
-      const messages = Object.values(err.errors).map((e) => e.message);
+      var messages = Object.values(err.errors).map(function (e) {
+        return e.message;
+      });
       return res.status(400).json({ message: messages.join(", ") });
     }
     console.error("updateEvent error:", err);
     return res.status(500).json({ message: "Failed to update event." });
   }
-};
+}
 
-// ── DELETE /event/:event_id ───────────────────────────────────────────────────
-const deleteEvent = async (req, res) => {
+async function deleteEvent(req, res) {
   try {
-    const { event_id } = req.params;
+    var event_id = req.params.event_id;
 
     if (!mongoose.Types.ObjectId.isValid(event_id)) {
       return res.status(404).json({ message: "Event not found." });
     }
 
-    const doc = await Event.findByIdAndDelete(event_id);
-    if (!doc) return res.status(404).json({ message: "Event not found." });
+    var doc = await Event.findByIdAndDelete(event_id);
+    if (!doc) {
+      return res.status(404).json({ message: "Event not found." });
+    }
 
     return res.status(200).json({ message: "Event deleted successfully." });
   } catch (err) {
     console.error("deleteEvent error:", err);
     return res.status(500).json({ message: "Failed to delete event." });
   }
-};
+}
 
-module.exports = { getEvents, createEvent, getEventById, updateEvent, deleteEvent };
+module.exports = {
+  getEvents: getEvents,
+  createEvent: createEvent,
+  getEventById: getEventById,
+  updateEvent: updateEvent,
+  deleteEvent: deleteEvent,
+};

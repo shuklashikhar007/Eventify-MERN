@@ -1,21 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const { signup, login, getMe, logout } = require("../controllers/authController");
-const { protect } = require("../middleware/auth");
+
+const authController = require("../controllers/authController");
+const authMiddleware = require("../middleware/auth");
 
 // POST /auth/signup
-router.post("/signup", signup);
+router.post("/signup", authController.signup);
 
 // POST /auth/login
-router.post("/login", login);
+router.post("/login", authController.login);
 
-// GET /auth/user  — protected, matches VITE_BACKEND_URL/auth/user in userStore
-router.get("/user", protect, getMe);
+// POST /auth/user/logout  (must be defined BEFORE /user so Express doesn't swallow it)
+router.post("/user/logout", authController.logout);
+router.get("/user/logout", authController.logout);
 
-// POST /auth/user/logout
-router.post("/user/logout", logout);
-
-// Also handle the redirect-style logout the frontend does (window.location.href = LOGOUT_ENDPOINT)
-router.get("/user/logout", logout);
+// GET /auth/user — protected
+router.get("/user", authMiddleware.protect, authController.getMe);
 
 module.exports = router;

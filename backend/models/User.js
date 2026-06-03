@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
-const ALLOWED_DOMAINS = ["@itbhu.ac.in", "@iitbhu.ac.in"];
+var ALLOWED_DOMAINS = ["@itbhu.ac.in", "@iitbhu.ac.in"];
 
-const userSchema = new mongoose.Schema(
+var userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -20,7 +20,10 @@ const userSchema = new mongoose.Schema(
       trim: true,
       validate: {
         validator: function (email) {
-          return ALLOWED_DOMAINS.some((domain) => email.endsWith(domain));
+          for (var i = 0; i < ALLOWED_DOMAINS.length; i++) {
+            if (email.endsWith(ALLOWED_DOMAINS[i])) return true;
+          }
+          return false;
         },
         message: "Only @itbhu.ac.in or @iitbhu.ac.in email addresses are allowed.",
       },
@@ -29,38 +32,33 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
       minlength: 6,
-      select: false, // never returned in queries by default
+      select: false,
     },
     image_url: {
       type: String,
       default: null,
     },
   },
-  {
-    timestamps: true, // adds createdAt / updatedAt
-  }
+  { timestamps: true }
 );
 
-// Hash password before saving
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  const salt = await bcrypt.genSalt(10);
+  var salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
-// Compare plain password with hashed
 userSchema.methods.comparePassword = async function (plainPassword) {
   return bcrypt.compare(plainPassword, this.password);
 };
 
-// Shape output to match what the frontend expects (mirrors Go User struct field names)
 userSchema.methods.toClientJSON = function () {
   return {
     ID: this._id.toString(),
     name: this.name,
     email: this.email,
-    image_url: this.image_url,
+    image_url: this.image_url || null,
     CreatedAt: this.createdAt,
     UpdatedAt: this.updatedAt,
   };
